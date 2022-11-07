@@ -2,11 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class MyFrame extends JFrame implements ActionListener {
+public class MyFrame extends JFrame implements KeyListener, ActionListener {
 
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0, buttonComma, buttonEqual,
     buttonPlus, buttonMinus, buttonMultiply, buttonDivide, buttonPercent, buttonAC, buttonClear;
+
 
     JTextField textField;
 
@@ -23,6 +26,9 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(WIDTH, HEIGHT);
         this.setLayout(null);
+        this.addKeyListener(this);
+        this.setFocusable(true);
+
 
 //        JPanel panelButtons = new JPanel();
 //
@@ -94,6 +100,114 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    // Checks if you press on keyboard
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if(e.getKeyChar()=='0'){
+            a = a + "0";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='1'){
+            a = a + "1";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='2'){
+            a = a + "2";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='3'){
+            a = a + "3";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='4'){
+            a = a + "4";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='5'){
+            a = a + "5";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='6'){
+            System.out.println("6");
+            a = a + "6";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='7'){
+            a = a + "7";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='8'){
+            a = a + "8";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='9'){
+            a = a + "9";
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='.'||e.getKeyChar()==','){
+            a = a + ".";
+            textField.setText(a);
+        }
+        if(e.getKeyChar() == 8){
+            if (a.length() != 0){
+                a = a.substring(0, a.length() - 1);
+            }
+            textField.setText(a);
+        }
+        if(e.getKeyChar()=='+'){
+            makeResult();
+            b = a;
+            a = "";
+            sign = '+';
+            textField.setText(String.valueOf(res));
+        }
+        if(e.getKeyChar()=='-'){
+            makeResult();
+            b = a;
+            a = "";
+            sign = '-';
+            textField.setText(String.valueOf(res));
+        }
+        if(e.getKeyChar()=='*'){
+            makeResult();
+            b = a;
+            a = "";
+            sign = '*';
+            textField.setText(String.valueOf(res));
+        }
+        if(e.getKeyChar()=='/'){
+            makeResult();
+            b = a;
+            a = "";
+            sign = '/';
+            textField.setText(String.valueOf(res));
+        }
+        if(e.getKeyChar() == 127){
+            textField.setText(String.valueOf(res));
+            res = 0;
+            a = "";
+            b = "";
+            sign = ' ';
+            textField.setText(String.valueOf(res));
+        }
+        if(e.getKeyChar()=='\n'){
+            makeResult();
+            textField.setText(String.valueOf(res));
+
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+        // It was only for helping to create previous override method
+    @Override
+    public void keyReleased(KeyEvent e) {
+        // System.out.println("You released key: " + (int) e.getKeyChar());
+    }
+
+    // Checks if you press on buttons
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==button0){
@@ -243,4 +357,6 @@ public class MyFrame extends JFrame implements ActionListener {
                 break;
         }
     }
+
+
 }

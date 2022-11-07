@@ -3,3 +3,6 @@ public class Main {
         new MyFrame();
     }
 }
+// make input from keyboard     -   COMPLETED!
+// align elements
+// add icon
