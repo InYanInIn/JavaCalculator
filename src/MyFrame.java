@@ -310,6 +310,8 @@ public class MyFrame extends JFrame implements KeyListener, ActionListener {
 
         }
     }
+
+    // main logic of the calculator
     public void makeResult(){
 
         switch (sign){
@@ -357,6 +359,5 @@ public class MyFrame extends JFrame implements KeyListener, ActionListener {
                 break;
         }
     }
-
 
 }
